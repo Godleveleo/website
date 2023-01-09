@@ -9,3 +9,32 @@ source entorno/bin/activate
  django-admin startproject (name)
 
  mkdir tmp
+
+
+ WSGIDaemonProcess www-data processes=1
+threads=3 python-path=/var/www/html/site/siteweb/
+WSGIProcessGroup www-data
+WSGIRestrictEmbedded On
+WSGILazyInitialization On
+WSGIScriptAlias / /var/www/html/site/siteweb/siteweb/wsgi.py
+
+<Directory /var/www/html/site/siteweb>
+    Require all granted
+</Directory>
+
+
+
+
+sudo apt-get update
+sudo apt-get install python libexpat1
+sudo apt-get install apache2 apache2-utils ssl-cert
+sudo apt-get install libapache2-mod-wsg
+sudo apt-get install libapache2-mod-wsgi-py3
+sudo systemctl restart apache2
+sudo vim /etc/apache2/apache2.conf
+sudo systemctl restart apache2
+
+
+
+python -m pip3 install Django==3.0.5
+/usr/lib/python3/dist-packages
